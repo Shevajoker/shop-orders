@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h1>Create new client!</h1>
+
+<br>
+<a th:href = "@{/order}">--Back</a>
+<br>
+<br>
+
+<form th:action="@{/saveClient}" method="post">
+<div th:object = "${client}">
+<label>clientName</label>
+<input type="text" th:value ="*{clientName}" name="clientName" placeholder="clientName">
+<br>
+<br>
+<label>clientSurName</label>
+<input type="text" th:value ="*{clientSurName}" name="clientSurName" placeholder="clientSurName">
+<br>
+<br>
+<label>clientPhone</label>
+<input type="text" th:value ="*{clientPhone}" name="clientPhone" placeholder="clientPhone">
+<br>
+<br>
+<label>clientEmail</label>
+<input type="text" th:value ="*{clientEmail}" name="clientEmail" placeholder="clientEmail">
+<br>
+<br>
+<label>clientAge</label>
+<input type="text" th:value ="*{clientAge}" name="clientAge" placeholder="clientAge">
+<br>
+<br>
+</div>
+<br>
+<br>
+<input type="submit">
+
+</form>
+</body>
+</html>

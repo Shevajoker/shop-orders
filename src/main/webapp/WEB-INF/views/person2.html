@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+<h1>PERSON-2</h1>
+
+
+<br>
+<br>
+
+<form th:action="@{/savePerson2}" method="post">
+
+<input type="text" th:field ="${person.name}" name="name" placeholder="Name">
+<br>
+<br>
+<input type="text" th:field ="${person.surName}" name="surName" placeholder="Surname">
+<br>
+<br>
+<input type="text"  name="petName" placeholder="Pet-Name">
+<br>
+<br>
+<input type="text" th:field ="${pet.age}" name="age" placeholder="Pet-Age">
+<br>
+<br>
+
+<input type="submit">
+
+</form>
+
+
+
+
+
+</body>
+</html>

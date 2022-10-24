@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h1>Client orders</h1>
+
+
+<p>Client</p>
+<br>
+<a th:href = "@{/main}">--Back</a>
+<br>
+<br>
+
+<form th:action="@{/clientOrders}" method="post">
+<select name="clientId">
+
+    <option th:each="cl : ${allClients}" th:value="${cl.id}" th:text="${cl.getClientName + ' ' + cl.getClientSurName}">
+    
+    </option>
+</select>
+<br>
+<br>
+<input type="submit" value="Show">
+</form>
+
+<br>
+<br>
+<br>
+<table border="1">
+    <tr>
+        <td>Order number <br> Номер заказа</td>
+        <td>Sale amount <br> Сумма продажи</td>
+        <td>Client <br> Клиент</td>
+        <td>Employee <br> Работник</td>
+        
+    </tr>
+    <tr th:each = "order : ${listOrders}">
+    
+        <td><span th:text="*{order.orderNumber}"></span></td>
+        <td><span th:text="*{order.saleAmount}"></span></td>
+        <td><span th:text="*{order.client.clientName}"></span></td>
+        <td><span th:text="*{order.employee.employeeName}"></span></td>
+        
+        
+        
+    </tr>
+</table>
+
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+<h1>Create new Employee.</h1>
+
+<br>
+<a th:href = "@{/order}">--Back</a>
+<br>
+<br>
+
+<form th:action="@{/saveEmployee}" method="post">
+<label>employeeName</label>
+<input type="text" th:value ="*{employeeName}" name="employeeName" placeholder="employeeName">
+<br>
+<br>
+<label>emlpoyeeSurName</label>
+<input type="text" th:value ="*{emlpoyeeSurName}" name="emlpoyeeSurName" placeholder="emlpoyeeSurName">
+<br>
+<br>
+
+<input type="submit">
+
+</form>
+</body>
+</html>
