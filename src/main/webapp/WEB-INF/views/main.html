@@ -1,23 +1,73 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
+
 <body>
 
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <br>
+            </div>
+        </div>
+    </div>
 
-<h1>MAIN</h1>
+    <div class="context">
 
-<br>
-<a th:href = "@{/order}">Order</a>
-<br>
-<br>
+        <div class="container">
+            <div class="row">
+                <div class="col-md">
+                    <div class="dateNow">Сегодня<br> <span id="dateOnMinePage"></span></div>
+                </div>
+            </div>
 
-<br>
-<a th:href = "@{/clientOrders}">Client orders</a>
-<br>
-<br>
+            <div class="row  text-center">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <a th:href="@{/order}" class="btn btn-outline-success">Создать новый заказ</a>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+            <div class="row">
+                <br>
+            </div>
+            <div class="row  text-center">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <a th:href="@{/clientOrders}" class="btn btn-outline-primary">Client orders</a>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
 
+    </div>
+
+    <div class="footer">
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+
+    <script>
+
+        var date = new Date;
+        var options = {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        };
+        document.getElementById('dateOnMinePage').textContent = date.toLocaleString("ru", options);
+
+    </script>
 </body>
+
 </html>

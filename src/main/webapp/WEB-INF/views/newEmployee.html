@@ -1,31 +1,63 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
+
 <body>
 
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <br>
+            </div>
+        </div>
+    </div>
 
-<h1>Create new Employee.</h1>
+    <div class="context">
 
-<br>
-<a th:href = "@{/order}">--Back</a>
-<br>
-<br>
+        <div class="container">
+            <div class="row ">
+                <div class="col-md-4"><a th:href="@{/order}" class="btn btn-outline-dark">Вернуться к заказу</a></div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <h1>Новый работник</h1>
+                    <br>
+                    <form th:action="@{/saveEmployee}" method="post">
+                        <label class="form-label">Имя</label>
+                        <input type="text" th:value="*{employeeName}" name="employeeName" placeholder="Имя"
+                            class="form-control">
+                        <br>
+                        <label class="form-label">Фамилия</label>
+                        <input type="text" th:value="*{emlpoyeeSurName}" name="emlpoyeeSurName" placeholder="Фамилия"
+                            class="form-control">
 
-<form th:action="@{/saveEmployee}" method="post">
-<label>employeeName</label>
-<input type="text" th:value ="*{employeeName}" name="employeeName" placeholder="employeeName">
-<br>
-<br>
-<label>emlpoyeeSurName</label>
-<input type="text" th:value ="*{emlpoyeeSurName}" name="emlpoyeeSurName" placeholder="emlpoyeeSurName">
-<br>
-<br>
+                        <br>
+                        <div class="d-grid gap-2">
+                            <input type="submit" class="btn btn-outline-success" value="Сохранить">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
 
-<input type="submit">
+    </div>
 
-</form>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

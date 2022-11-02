@@ -1,126 +1,159 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
+
 <body>
 
-
-<h1>ORDER</h1>
-
-<br>
-<a th:href = "@{/main}">--Back</a>
-<br>
-<br>
-
-
-<form th:action="@{/saveOrder}" method="post">
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <br>
+            </div>
+        </div>
+    </div>
 
 
-<p>Client</p>
+    <div class="context">
 
-<select name="clientId">
+        <div class="container">
+            <div class="row">
+                <div class="col-md">
+                    <div class="dateNow">Сегодня<br> <span id="dateOnMinePage"></span></div>
+                </div>
+            </div>
 
-    <option th:each="cl : ${allClients}" th:value="${cl.id}" th:text="${cl.getClientName + ' ' + cl.getClientSurName}">
-    
-    </option>
-</select>
+            <div class="row ">
+                <div class="col-md-4"><a th:href="@{/main}" class="btn btn-outline-dark">Меню</a></div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4"></div>
+            </div>
+            <div class="row">
+                <br>
+            </div>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <h1>Новый заказ</h1>
 
-<br>
-<br>
-
-
-<br>
-<br>
-<a href="newClient">CREATE NEW CLIENT!</a>
-
-<br>
-<hr>
-<br>
-
- 
-<p>Employee</p>
-
-
-<select name="employeeId">
-<option th:each = "emp : ${allEmployees}" th:text="${emp.employeeName + '--' + emp.id}" th:value="${emp.id}">
-</option>
-
-</select>
-
-<br>
-<br>
-
-<a href="newEmployee">CREATE NEW EMPLOYEE!</a>
-
-<br>
-<br>
-<hr>
-<!--
-<div th:object = "${employee}">
-<label>employeeName</label>
-<input type="text" th:value ="*{employeeName}" name="employeeName" placeholder="employeeName">
-<br>
-<br>
-<label>emlpoyeeSurName</label>
-<input type="text" th:value ="*{emlpoyeeSurName}" name="emlpoyeeSurName" placeholder="emlpoyeeSurName">
-<br>
-<br>
-
-</div>
- -->
- 
- <br>
- <br>
- 
-<p>Order</p>
-<div th:object = "${order}">
-<label>orderNumber</label>
-<input type="text" th:value ="*{orderNumber}" name="orderNumber" placeholder="orderNumber">
-<br>
-<br>
-<label>saleAmount</label>
-<input type="text" th:value ="*{saleAmount}" name="saleAmount" placeholder="saleAmount">
-<br>
-<br>
-
-<label>paymentAmount</label>
-<input type="text" th:value ="*{paymentAmount}" name="paymentAmount" placeholder="paymentAmount">
-<br>
-<br>
-<label>deliveryDate</label>
-<input type="date" th:value ="*{deliveryDate}" name="deliveryDate" placeholder="deliveryDate">
-<br>
-<br>
-<label>discount</label>
-<input type="text" th:value ="*{discount}" name="discount" placeholder="discount">
-<br>
-<br>
-<label>deliveryAddress</label>
-<input type="text" th:value ="*{deliveryAddress}" name="deliveryAddress" placeholder="deliveryAddress">
-<br>
-<br>
-<label>comment</label>
-<input type="text" th:value ="*{comment}" name="comment" placeholder="comment">
-<br>
-<br>
-<label>creationDate</label>
-<input type="date" th:value ="*{creationDate}" name="creationDate" placeholder="creationDate">
-<br>
-<br>
+                    <form th:action="@{/saveOrder}" method="post">
 
 
-</div>
+                        <p>Клиент</p>
+
+                        <select name="clientId" class="form-select">
+                            <option th:each="cl : ${allClients}" th:value="${cl.id}"
+                                th:text="${cl.getClientName + ' ' + cl.getClientSurName}">
+                            </option>
+                        </select>
+                        <br>
+                        <a href="newClient" class="btn-link">Новый клиент</a>
+                        <hr>
+                        <br>
+
+
+                        <p>Работник</p>
+                        <select name="employeeId" class="form-select">
+                            <option th:each="emp : ${allEmployees}" th:text="${emp.employeeName + '--' + emp.id}"
+                                th:value="${emp.id}">
+                            </option>
+
+                        </select>
+                        <br>
+                        <a href="newEmployee" class="btn-link">Новый работник</a>
+
+                        <br>
+                        <br>
+                        <hr>
+
+
+                        <br>
+
+
+                        <p>Заказ</p>
+                        <div th:object="${order}">
+                            <label class="form-label">Номер заказа</label>
+                            <input type="text" th:value="*{orderNumber}" name="orderNumber" placeholder="Номер заказа"
+                                class="form-control">
+                            <br>
+                            <label class="form-label">Сумма заказа</label>
+                            <input type="text" th:value="*{saleAmount}" name="saleAmount" placeholder="Сумма заказа"
+                                class="form-control">
+                            <br>
+                            <label class="form-label">Оплачено</label>
+                            <input type="text" th:value="*{paymentAmount}" name="paymentAmount" placeholder="Оплачено"
+                                class="form-control">
+                            <br>
+                            <label class="form-label">Дата доставки</label>
+                            <input type="date" th:value="*{deliveryDate}" name="deliveryDate"
+                                placeholder="Дата доставки" class="form-control">
+                            <br>
+                            <label class="form-label">Скидка</label>
+                            <input type="text" th:value="*{discount}" name="discount" placeholder="Скидка"
+                                class="form-control">
+                            <br>
+                            <label class="form-label">Адрес доставки</label>
+                            <textarea type="text" th:value="*{deliveryAddress}" name="deliveryAddress"
+                                placeholder="Адрес доставки" class="form-control"></textarea>
+                            <br>
+                            <label class="form-label">Комментарий</label>
+                            <textarea type="text" th:value="*{comment}" name="comment" placeholder="Комментарий"
+                                class="form-control"></textarea>
+                            <br>
+                            <label class="form-label">Дата создания</label>
+                            <input type="date" th:value="*{creationDate}" name="creationDate"
+                                placeholder="Дата создания" class="form-control">
+
+
+                        </div>
+
+
+                        <br>
+                        <input type="submit">
+
+                    </form>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+
+    </div>
 
 
 
-<input type="submit">
-
-</form>
 
 
 
 
+    <br>
+
+    <br>
+    <br>
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+    <script>
+
+        var date = new Date;
+        var options = {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        };
+        document.getElementById('dateOnMinePage').textContent = date.toLocaleString("ru", options);
+
+    </script>
 </body>
+
 </html>
