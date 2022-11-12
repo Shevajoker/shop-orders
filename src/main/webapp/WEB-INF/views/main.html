@@ -2,72 +2,94 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Insert title here</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+	crossorigin="anonymous">
+
+<link rel="stylesheet" th:href="@{/resources/styles/default.css}">
+
 </head>
 
 <body>
 
-    <div class="header">
-        <div class="container">
-            <div class="row">
-                <br>
-            </div>
-        </div>
-    </div>
+	<div class="header">
+		<div class="container">
+			<div class="row">
+				<br>
+			</div>
+		</div>
+	</div>
 
-    <div class="context">
+	<div class="context">
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md">
-                    <div class="dateNow">Сегодня<br> <span id="dateOnMinePage"></span></div>
-                </div>
-            </div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-2">
+					<div class="dateNow">
+						Сегодня<br> <span id="dateOnMinePage"></span>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div id="time-header"></div>
+				</div>
 
-            <div class="row  text-center">
-                <div class="col-md-4"></div>
-                <div class="col-md-4">
-                    <a th:href="@{/order}" class="btn btn-outline-success">Создать новый заказ</a>
-                </div>
-                <div class="col-md-4"></div>
-            </div>
-            <div class="row">
-                <br>
-            </div>
-            <div class="row  text-center">
-                <div class="col-md-4"></div>
-                <div class="col-md-4">
-                    <a th:href="@{/clientOrders}" class="btn btn-outline-primary">Client orders</a>
-                </div>
-                <div class="col-md-4"></div>
-            </div>
-        </div>
+				<div class="col-md-8">
+					<h3 class="test-css">TEST text</h3>
+				</div>
 
-    </div>
+			</div>
 
-    <div class="footer">
+			<div class="row  text-center">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<a th:href="@{/order}" class="btn btn-success">Создать новый
+						заказ</a>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+			<div class="row">
+				<br>
+			</div>
+			<div class="row  text-center">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<a th:href="@{/clientOrders}" class="btn btn-primary">Заказы клиента</a>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
 
-    </div>
+			<div class="row">
+			
+			<div class="col-md-4">
+				<div class="list-group">
+						<a th:href="@{/order}"	class="list-group-item list-group-item-action">Создать новый заказ</a> 
+						<a th:href="@{/clientOrders}" class="list-group-item list-group-item-action">Заказы клиента</a> 
+						
+				</div>
+				</div>
+				<div class="col-md-8"></div>
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="footer">
+		<button type="button" onclick="myFunction()">Кликни меня</button>
+	</div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-        crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+		crossorigin="anonymous"></script>
 
-    <script>
-
-        var date = new Date;
-        var options = {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-        };
-        document.getElementById('dateOnMinePage').textContent = date.toLocaleString("ru", options);
-
-    </script>
+	
+	<script th:src="@{/resources/js/DateTime.js}"></script>
 </body>
 
 </html>

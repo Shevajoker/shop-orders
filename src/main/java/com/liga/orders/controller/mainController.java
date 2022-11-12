@@ -4,38 +4,22 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.liga.orders.entity.Client;
 import com.liga.orders.entity.Employee;
 import com.liga.orders.entity.Order;
-import com.liga.orders.entity.People;
-import com.liga.orders.entity.Person;
-import com.liga.orders.entity.Pet;
+
 import com.liga.orders.service.ClientService;
 import com.liga.orders.service.EmployeeService;
 import com.liga.orders.service.OrderService;
-import com.liga.orders.service.PeopleService;
-import com.liga.orders.service.PersonService;
-import com.liga.orders.service.PetService;
 
 @Controller
 public class mainController {
-
-	@Autowired
-	private PeopleService peopleService;
-
-	@Autowired
-	private PetService petService;
-
-	@Autowired
-	private PersonService personService;
 
 	@Autowired
 	private OrderService orderService;
@@ -51,62 +35,6 @@ public class mainController {
 		return "main";
 	}
 
-	@RequestMapping("/people")
-	public String people(Model model) {
-
-		model.addAttribute("people", new People());
-
-		return "people";
-	}
-
-	@PostMapping("/savePeople")
-	public String savePeople(@ModelAttribute("people") People people) {
-		peopleService.savePeople(people);
-		return "redirect:/people";
-	}
-
-	@RequestMapping("/person")
-	public String person(Model model) {
-
-		model.addAttribute("person", new Person());
-
-		return "person";
-	}
-
-	@PostMapping("/savePerson")
-	public String savePerson(@ModelAttribute("person") Person person) {
-
-		Pet pet = new Pet();
-		pet.setName("JEk");
-		pet.setAge(5);
-
-//		petService.savePet(pet);
-
-		pet.addPersonToPet(person);
-
-		personService.savePerson(person);
-
-		return "redirect:/person";
-	}
-
-	@RequestMapping("/person2")
-	public String person2(Model model) {
-
-		model.addAttribute("person", new Person());
-		model.addAttribute("pet", new Pet());
-
-		return "person2";
-	}
-
-	@PostMapping("/savePerson2")
-	public String savePerson2(@ModelAttribute("person") Person person, @ModelAttribute("pet") Pet pet,
-			@RequestParam("petName") String petName) {
-		pet.setName(petName);
-		pet.addPersonToPet(person);
-		personService.savePerson(person);
-
-		return "redirect:/person2";
-	}
 
 	@RequestMapping("/order")
 	public String order(Model model) {
@@ -175,6 +103,8 @@ public class mainController {
 	@GetMapping("/clientOrders")
 	public String clientOrders(Model model) {
 		model.addAttribute("allClients", clientService.getAllClients());
+		model.addAttribute("selectClient", "");
+		model.addAttribute("selectClientId", 0);
 		return "client-orders";
 	}
 
@@ -186,6 +116,8 @@ public class mainController {
 		List<Order> orders = client.getOrders();
 		
 		model.addAttribute("listOrders", orders);
+		model.addAttribute("selectClient", client.getClientName() + " " + client.getClientSurName());
+		model.addAttribute("selectClientId", client.getId());
 
 		return "client-orders";
 	}

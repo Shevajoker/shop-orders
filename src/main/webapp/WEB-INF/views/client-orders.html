@@ -3,9 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <title>Заказы клиета</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -35,7 +36,7 @@
                     <br>
                     <form th:action="@{/clientOrders}" method="post">
                         <label for="clientId">Выберите клиента</label>
-                        <select name="clientId" class="form-select">
+                        <select name="clientId" class="form-select" id="selectClient">
                             <option th:each="cl : ${allClients}" th:value="${cl.id}"
                                 th:text="${cl.getClientName + ' ' + cl.getClientSurName}">
                             </option>
@@ -46,11 +47,18 @@
                         </div>
                     </form>
                     <br>
+                    
+                    <h2><span th:text="${selectClient}" id="selectClientSpan"></span>  </h2>
+                    <span hidden="true" th:text="${selectClientId}" id="selectClientSpanId"></span>
+                    
+                    <br>
                     <table class="table">
                         <thead>
                             <tr>
                                 <th>Order number <br> Номер заказа</th>
                                 <th>Sale amount <br> Сумма продажи</th>
+                                <th>Сумма оплаты</th>
+                                <th>Долг</th>
                                 <th>Client <br> Клиент</th>
                                 <th>Employee <br> Работник</th>
                             </tr>
@@ -59,6 +67,8 @@
                             <tr th:each="order : ${listOrders}">
                                 <td><span th:text="*{order.orderNumber}"></span></td>
                                 <td><span th:text="*{order.saleAmount}"></span></td>
+                                <td><span th:text="*{order.paymentAmount}"></span></td>
+                                <td><span th:text="*{order.saleAmount - order.paymentAmount}"></span></td>
                                 <td><span th:text="*{order.client.clientName}"></span></td>
                                 <td><span th:text="*{order.employee.employeeName}"></span></td>
                             </tr>
@@ -79,6 +89,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
+        
+        <script>
+
+        var client = document.getElementById('selectClientSpanId').innerHTML;
+        const $select = document.getElementById('selectClient');
+        $select.value = parseInt(client);
+
+        </script>
+        <script src=""></script>
 </body>
 
 </html>
