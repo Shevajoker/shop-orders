@@ -3,7 +3,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Main</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -38,40 +38,46 @@
 				</div>
 
 				<div class="col-md-8">
-					<h3 class="test-css">TEST text</h3>
+					<h3>При покупке кровати, скидка на матрас 15%!</h3>
 				</div>
 
 			</div>
 
-			<div class="row  text-center">
-				<div class="col-md-4"></div>
-				<div class="col-md-4">
-					<a th:href="@{/order}" class="btn btn-success">Создать новый
-						заказ</a>
-				</div>
-				<div class="col-md-4"></div>
-			</div>
-			<div class="row">
-				<br>
-			</div>
-			<div class="row  text-center">
-				<div class="col-md-4"></div>
-				<div class="col-md-4">
-					<a th:href="@{/clientOrders}" class="btn btn-primary">Заказы клиента</a>
-				</div>
-				<div class="col-md-4"></div>
-			</div>
 
+<div class="row"> <br> <br> </div>
+
+			
 			<div class="row">
 			
 			<div class="col-md-4">
 				<div class="list-group">
 						<a th:href="@{/order}"	class="list-group-item list-group-item-action">Создать новый заказ</a> 
-						<a th:href="@{/clientOrders}" class="list-group-item list-group-item-action">Заказы клиента</a> 
+						<a th:href="@{/clientOrders}" class="list-group-item list-group-item-action">Заказы клиента</a>
+						<a th:href="@{/employeeOrders}" class="list-group-item list-group-item-action">Заказы продавца</a> 
+						<a th:href="@{/employeeOrders}" class="list-group-item list-group-item-action">Отчеты по продажам</a>
 						
 				</div>
 				</div>
-				<div class="col-md-8"></div>
+				<div class="col-md-4">
+					<h2>Акции</h2>
+					<ul>
+						<li>Oskar</li>
+						<li>Monako</li>
+						<li>Tiffny</li>
+						<li>Linate</li>
+						<li>Bosco</li>
+						<li>Diesel</li>
+					</ul>
+				</div>
+				<div class="col-md-4">
+					<h2>Новости</h2>
+					<ul>
+						<li><a href="https://anrex.info/company/news/novinka_kollektsiya_doorset/" target="_blank">НОВИНКА - КОЛЛЕКЦИЯ DOORSET!</a></li>
+						<li><a href="https://anrex.info/company/news/novinka_divan_cameron_simple_44/" target="_blank">НОВИНКА - ДИВАН CAMERON SIMPLE 44!</a></li>
+						<li><a href="https://anrex.info/company/news/novinka_divan_cameron_dream_18/" target="_blank">НОВИНКА - ДИВАН CAMERON DREAM 18!</a></li>
+						<li><a href="https://anrex.info/company/news/novinka_spalnya_valencia/" target="_blank">НОВИНКА - СПАЛЬНЯ VALENCIA!</a></li>
+					</ul>
+				</div>
 			</div>
 
 		</div>
@@ -79,7 +85,7 @@
 	</div>
 
 	<div class="footer">
-		<button type="button" onclick="myFunction()">Кликни меня</button>
+		
 	</div>
 
 

@@ -1,7 +1,29 @@
 @charset "UTF-8";
 
-#time-header{
+#time-header {
 	color: red;
 	font-size: 30px;
 	font-family: fantasy;
+}
+
+.row-total td {
+	color: red;
+}
+
+table {
+	width: 100%;
+}
+
+tr :first-child {
+	width: 0;
+	white-space: nowrap;
+}
+
+tr :last-child {
+	width: 100%;
+}
+
+.test {
+	color: red;
+	background: green;
 }

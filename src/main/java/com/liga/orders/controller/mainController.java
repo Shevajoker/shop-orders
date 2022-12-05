@@ -1,9 +1,11 @@
 package com.liga.orders.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,11 +32,17 @@ public class mainController {
 	@Autowired
 	private EmployeeService employeeService;
 
+	@RequestMapping("/")
+	public String naimIndex() {
+		return "main";
+	}
+	
 	@RequestMapping("/main")
 	public String naim() {
 		return "main";
 	}
 
+	
 
 	@RequestMapping("/order")
 	public String order(Model model) {
@@ -65,6 +73,9 @@ public class mainController {
 
 		order.setClient(client);
 		order.setEmployee(employee);
+		if(order.getCreationDate() == null) {
+		order.setCreationDate(new Date());
+		}
 
 		System.out.println(order.toString());
 		orderService.saveOrder(order);
@@ -114,12 +125,45 @@ public class mainController {
 		Client client = clientService.getClientById(clientId);
 
 		List<Order> orders = client.getOrders();
+		double totalSaleAmount = orders.stream().mapToDouble(x -> x.getSaleAmount()).sum();
+		double totalPaymentAmount = orders.stream().mapToDouble(x -> x.getPaymentAmount()).sum();
 		
 		model.addAttribute("listOrders", orders);
 		model.addAttribute("selectClient", client.getClientName() + " " + client.getClientSurName());
 		model.addAttribute("selectClientId", client.getId());
+		model.addAttribute("totalSaleAmount", totalSaleAmount);
+		model.addAttribute("totalPaymentAmount", totalPaymentAmount);
 
 		return "client-orders";
 	}
 
+	
+	@GetMapping("/employeeOrders")
+	public String employeeOrders(Model model) {
+		model.addAttribute("allEmployeers", employeeService.getAllEmployees());
+		model.addAttribute("selectEmployee", "");
+		model.addAttribute("selectEmployeeId", 0);
+		return "employee-orders";
+	}
+	
+	@PostMapping("/employeeOrders")
+	public String employeeOrders(@ModelAttribute("employeeId") int employeeId, Model model) {
+		model.addAttribute("allEmployeers", employeeService.getAllEmployees());
+		Employee employee =  employeeService.getEmployeeById(employeeId);
+
+		List<Order> orders = employee.getOrders();
+		
+		double totalSaleAmount = orders.stream().mapToDouble(x -> x.getSaleAmount()).sum();
+		double totalPaymentAmount = orders.stream().mapToDouble(x -> x.getPaymentAmount()).sum();
+		
+		
+		
+		model.addAttribute("listOrders", orders);
+		model.addAttribute("selectEmployee", employee.getEmployeeName() + " " + employee.getEmlpoyeeSurName());
+		model.addAttribute("selectEmployeeId", employee.getId());
+		model.addAttribute("totalSaleAmount", totalSaleAmount);
+		model.addAttribute("totalPaymentAmount", totalPaymentAmount);
+
+		return "employee-orders";
+	}
 }
